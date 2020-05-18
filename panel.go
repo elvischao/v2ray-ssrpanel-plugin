@@ -155,11 +155,6 @@ func (p *Panel) getTraffic() (logs []userStatsLogs, err error) {
 		}
 
 		if uplink+downlink > 0 {
-			ips, err = p.statsServiceClient.getUserIPStats(user.Email, true)
-			if err != nil {
-				return
-			}
-
 			logs = append(logs, userStatsLogs{
 				UserTrafficLog: UserTrafficLog{
 					UserID:   user.ID,
@@ -168,7 +163,7 @@ func (p *Panel) getTraffic() (logs []userStatsLogs, err error) {
 					NodeID:   p.NodeID,
 					Rate:     p.node.TrafficRate,
 				},
-				ipList:   ips,
+				ipList:   "",
 				UserPort: user.Port,
 			})
 		}
