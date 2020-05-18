@@ -46,20 +46,6 @@ func (s *StatsServiceClient) getUserTraffic(name string, reset bool) (uint64, er
 }
 
 func (s *StatsServiceClient) getUserIPStats(email string, reset bool) (string, error) {
-	name := fmt.Sprintf("user>>>%s>>>ip", email)
-	req := &statsservice.GetStatsRequest{
-		Name:   name,
-		Reset_: reset,
-	}
-
-	res, err := s.StatsServiceClient.GetUserIPStats(context.Background(), req)
-	if err != nil {
-		if status, ok := status.FromError(err); ok && strings.HasSuffix(status.Message(), fmt.Sprintf("%s not found.", name)) {
-			return "", nil
-		}
-
-		return "", err
-	}
-
-	return res.Value, nil
+	// not support this feature
+	return "", nil
 }
